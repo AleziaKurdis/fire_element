@@ -23,6 +23,7 @@
 
     var thisEntityId;
     var fireScaleFactor = 1;
+    var previousDimensions;
     
     var FIRE_MODEL_Y_SIZE = 0.3003;
     var FIRE_MODEL_Z_SIZE = 0.9676;
@@ -39,7 +40,7 @@
         
         var properties = Entities.getEntityProperties(thisEntityId, "dimensions");
         fireScaleFactor = properties.dimensions.x;
-        
+        previousDimensions = properties.dimensions;
             //print("FIRE: preload sound!");
         /*
         playsound(entityID);
@@ -122,21 +123,21 @@
             
             //Check for resize
             var properties = Entities.getEntityProperties(thisEntityId, "dimensions");
-            if (properties.dimensions.x !== fireScaleFactor){
+            if (properties.dimensions !== previousDimensions){
                 //Resize
                 fireScaleFactor = properties.dimensions.x;
                 print("RESIZE!");
-                Entities.editEntity(thisEntityId, {
-                    "dimensions": {
+                var newDimensions = {
                         "x": fireScaleFactor, 
                         "y": fireScaleFactor * FIRE_MODEL_Y_SIZE, 
                         "z": fireScaleFactor * FIRE_MODEL_Z_SIZE
-                    }
+                    };
+                Entities.editEntity(thisEntityId, {
+                    "dimensions": newDimensions
                 });
-                
+                previousDimensions = newDimensions;
+                //resize partlice and light range
             }
-            
-            
             
             today = new Date();
             processTimer = today.getTime();
