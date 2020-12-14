@@ -125,8 +125,14 @@
             if (properties.dimensions.x !== fireScaleFactor){
                 //Resize
                 fireScaleFactor = properties.dimensions.x;
-                Entities.editEntity(thisEntityId, {"dimensions": {"x": fireScaleFactor, "y": fireScaleFactor * FIRE_MODEL_Y_SIZE, "z": fireScaleFactor * FIRE_MODEL_Z_SIZE}});
-                
+                print("RESIZE!");
+                Entities.editEntity(thisEntityId, {
+                    "dimensions": {
+                        "x": fireScaleFactor, 
+                        "y": fireScaleFactor * FIRE_MODEL_Y_SIZE, 
+                        "z": fireScaleFactor * FIRE_MODEL_Z_SIZE
+                    }
+                });
                 
             }
             
