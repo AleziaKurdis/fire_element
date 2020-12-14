@@ -112,7 +112,7 @@
         if ((today.getTime() - processTimer) > UPDATE_TIMER_INTERVAL ) {
             
             //processing
-            
+            print("PROCESSING!");
             
             
             today = new Date();
