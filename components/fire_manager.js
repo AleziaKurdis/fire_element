@@ -9,11 +9,11 @@
 //  See the accompanying file LICENSE or http://www.apache.org/licenses/LICENSE-2.0.html
 //
 (function(){
-    var ROOT = Script.resolvePath('').split("fire_manager.js")[0];
-    var FIRE_SOUND_URL = ROOT + 'SOUND_FIRE_MONO.mp3';
-    var PARTICLE_FLAME_URL = ROOT + 'PARTICLE_FIRE_FLAME.png';
-    var PARTICLE_LOW_FLAME_URL = ROOT + 'PARTICLE_FIRE_LOW_FLAME.png';
-    var PARTICLE_SPARK_URL = ROOT + 'PARTICLE_FIRE_SPARK.png';
+    var ROOT = Script.resolvePath("").split("fire_manager.js")[0];
+    var FIRE_SOUND_URL = ROOT + "SOUND_FIRE_MONO.mp3";
+    var PARTICLE_FLAME_URL = ROOT + "PARTICLE_FIRE_FLAME.png";
+    var PARTICLE_LOW_FLAME_URL = ROOT + "PARTICLE_FIRE_LOW_FLAME.png";
+    var PARTICLE_SPARK_URL = ROOT + "PARTICLE_FIRE_SPARK.png";
 
     var UPDATE_TIMER_INTERVAL = 20000; // 20 sec
     var processTimer = 0;
