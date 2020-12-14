@@ -22,6 +22,10 @@
     var fireSoundInjector;
 
     var thisEntityId;
+    var fireScaleFactor = 1;
+    
+    var FIRE_MODEL_Y_SIZE = 0.3003;
+    var FIRE_MODEL_Z_SIZE = 0.9676;
     /* 
     var HighFlam;
     var LowFlam;
@@ -31,8 +35,11 @@
 
     this.preload = function(entityID) { 
         thisEntityId = entityID;
-        print(PARTICLE_FLAME_URL);
         fireSound = SoundCache.getSound(FIRE_SOUND_URL);
+        
+        var properties = Entities.getEntityProperties(thisEntityId, "dimensions");
+        fireScaleFactor = properties.dimensions.x;
+        
             //print("FIRE: preload sound!");
         /*
         playsound(entityID);
@@ -112,6 +119,17 @@
             
             //processing
             print("PROCESSING!");
+            
+            //Check for resize
+            var properties = Entities.getEntityProperties(thisEntityId, "dimensions");
+            if (properties.dimensions.x !== fireScaleFactor){
+                //Resize
+                fireScaleFactor = properties.dimensions.x;
+                Entities.editEntity(thisEntityId, {"dimensions": {"x": fireScaleFactor, "y": fireScaleFactor * FIRE_MODEL_Y_SIZE, "z": fireScaleFactor * FIRE_MODEL_Z_SIZE}});
+                
+                
+            }
+            
             
             
             today = new Date();
