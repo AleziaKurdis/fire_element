@@ -126,7 +126,6 @@
             if (properties.dimensions !== previousDimensions){
                 //Resize
                 fireScaleFactor = properties.dimensions.x;
-                print("RESIZE!");
                 var newDimensions = {
                         "x": fireScaleFactor, 
                         "y": fireScaleFactor * FIRE_MODEL_Y_SIZE, 
