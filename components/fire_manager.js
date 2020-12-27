@@ -426,7 +426,7 @@
             }, "local");
         }        
 
-
+/*
     function GenLight(TityId){
         
         var properLight = Entities.getEntityProperties(TityId); 
@@ -469,8 +469,8 @@
         });
         
     }
-        
 */        
+       
     function playFireSound(){
         var prop = Entities.getEntityProperties(thisEntityId, "position"); 
         var entposition = prop.position;
