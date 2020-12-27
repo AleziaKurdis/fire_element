@@ -30,10 +30,10 @@
     
     var FIRE_CYCLE = 35000; //35 minutes
 
-    //var HighFlam;
+    var highFlamId;
     var lowFlamId;
-    //var SparcklesFlam;
-    //var LightFire;
+    var sparksFlamId;
+    var lightFireId;
 
     this.preload = function(entityID) { 
         thisEntityId = entityID;
@@ -44,10 +44,7 @@
         previousDimensions = properties.dimensions;
 
         addLowFire(thisEntityId);
-
-        //Add spackle particle
-        //AddSparckles(entityID);
-        //print("FIRE: add Sparckles!");    
+        addSparks(thisEntityId); 
         
         //Add first High Fire
         //AddHighFire(entityID);
@@ -92,9 +89,9 @@
         }
         
         Entities.deleteEntity(lowFlamId);
-        
+        Entities.deleteEntity(sparksFlamId);
         //Entities.deleteEntity(HighFlam);
-        //Entities.deleteEntity(SparcklesFlam);
+        //
         //Entities.deleteEntity(LightFire);        
 
         Script.update.disconnect(myTimer);
@@ -130,6 +127,9 @@
                 
                 Entities.deleteEntity(lowFlamId);
                 addLowFire(thisEntityId);                
+                
+                Entities.deleteEntity(sparksFlamId);
+                addSparks(thisEntityId);
                 
                 previousDimensions = newDimensions;
                 //resize partlice and light range
@@ -250,12 +250,7 @@
 
             var properties = Entities.getEntityProperties(entityID, ["position", "rotation", "renderWithZones"]);   
             
-            lowFlamId = Entities.addEntity({
-                "accelerationSpread": {  
-                    "x": 0,
-                    "y": 0,
-                    "z": 0
-                }, 
+            lowFlamId = Entities.addEntity({ 
                 "alpha": 0.2,
                 "alphaFinish": 0,
                 "alphaSpread": 0,
@@ -336,22 +331,16 @@
                 "textures": PARTICLE_LOW_FLAME_URL,
                 "type": "ParticleEffect",
                 "grab": {
-                            "grabbable": false
+                    "grabbable": false
                 }
-            }, "local");
-            
-            
+            }, "local"); 
         }        
-
-/*        
-        function AddSparckles(TityId) {
-            //print("FIRE: add permanent Sparckle!");
+      
+        function addSparks(entityID) {
             
-            var properSparcklesFlam = Entities.getEntityProperties(TityId); 
-            var SparcklesFlamPosition = properSparcklesFlam.position;
-            var SparcklesFlamRotation = properSparcklesFlam.rotation;
+            var properties = Entities.getEntityProperties(entityID,["position", "rotation", "renderWithZones"]); 
             
-            SparcklesFlam = Entities.addEntity({
+            sparksFlamId = Entities.addEntity({
                 "accelerationSpread": {  
                     "x": 0,
                     "y": 0,
@@ -386,19 +375,19 @@
                     "red": 255
                 },
                 "dimensions": {
-                    "x": 2.5576000213623047,
-                    "y": 2.5576000213623047,
-                    "z": 2.5576000213623047
+                    "x": 2.5576000213623047 * fireScaleFactor,
+                    "y": 2.5576000213623047 * fireScaleFactor,
+                    "z": 2.5576000213623047 * fireScaleFactor
                 },
                 "emitAcceleration": {
                     "x": 0,
-                    "y": 2,
+                    "y": 1 * fireScaleFactor,
                     "z": 0
                 },
                 "emitDimensions": {
-                    "x": 1,
-                    "y": 1,
-                    "z": 1
+                    "x": 0.4 * fireScaleFactor,
+                    "y": 0.1 * fireScaleFactor,
+                    "z": 0.4 * fireScaleFactor
                 },
                 "emitOrientation": {
                     "w": 0.7071068,
@@ -413,39 +402,28 @@
                 "isEmitting": 1,            
                 "lifespan": 2,
                 "maxParticles": 20,
-                "name": "Sparckles Particle - AK2018",
+                "name": "Sparks Particles",
                 "particleRadius": 0.2,
                 "polarStart": 0,
                 "polarFinish": 0.191,
                 "position":{
-                    "x": SparcklesFlamPosition.x,
-                    "y": SparcklesFlamPosition.y + 0.45,
-                    "z": SparcklesFlamPosition.z
+                    "x": properties.position.x,
+                    "y": properties.position.y + (0.45 * fireScaleFactor),
+                    "z": properties.position.z
                 },
-                "parentID": TityId,
-                "lifetime": 2400.1,
-                "queryAACube": {
-                    "scale": 4.429893493652344,
-                    "x": -2.214946746826172,
-                    "y": -2.214946746826172,
-                    "z": -2.214946746826172
-                },
+                "parentID": entityID,
                 "radiusFinish": 0.2,
                 "radiusSpread": 0,
                 "radiusStart": 0.2,
-                "rotation": {
-                    "w": SparcklesFlamRotation.w,
-                    "x": SparcklesFlamRotation.x,
-                    "y": SparcklesFlamRotation.y,
-                    "z": SparcklesFlamRotation.z
-                },
+                "rotation": properties.rotation,
+                "renderWithZones": properties.renderWithZones,
                 "speedSpread": 0,
-                "textures": "http://mpassets.highfidelity.com/bf263f5a-c152-45ae-953f-07c61438ed82-v1/PARTICLE_SPARCKLE_FIRE_2018.png",
+                "textures": PARTICLE_SPARK_URL,
                 "type": "ParticleEffect",
-                "userData": "{\"grabbableKey\":{\"grabbable\":false}}"
-            });
-            
-            
+                "grab": {
+                    "grabbable": false
+                }
+            }, "local");
         }        
 
 
