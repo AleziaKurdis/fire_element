@@ -27,12 +27,13 @@
     
     var FIRE_MODEL_Y_SIZE = 0.3003;
     var FIRE_MODEL_Z_SIZE = 0.9676;
-    /* 
-    var HighFlam;
-    var LowFlam;
-    var SparcklesFlam;
-    var LightFire;
-    */
+    
+    var FIRE_CYCLE = 35000; //35 minutes
+
+    //var HighFlam;
+    var lowFlamId;
+    //var SparcklesFlam;
+    //var LightFire;
 
     this.preload = function(entityID) { 
         thisEntityId = entityID;
@@ -41,32 +42,24 @@
         var properties = Entities.getEntityProperties(thisEntityId, "dimensions");
         fireScaleFactor = properties.dimensions.x;
         previousDimensions = properties.dimensions;
-            //print("FIRE: preload sound!");
-        /*
-        playsound(entityID);
-        //print("FIRE: Play looped sound!");
-        
-        
-        
-        //Add low fire particle
-        AddLowFire(entityID);
-        //print("FIRE: add Low fire!");
-        
+
+        addLowFire(entityID);
+
         //Add spackle particle
-        AddSparckles(entityID);
+        //AddSparckles(entityID);
         //print("FIRE: add Sparckles!");    
         
         //Add first High Fire
-        AddHighFire(entityID);
+        //AddHighFire(entityID);
         //print("FIRE: add 1st High Fire!");    
 
         //Add Light
-        GenLight(entityID);
+        //GenLight(entityID);
         //print("FIRE: add Light!");
         
         //install timer High Fire
         
-        
+        /*
         var ProcessInterval = Script.setInterval(function() {
 
             //50% time
@@ -97,15 +90,13 @@
         if (fireSoundInjector !== undefined){
             fireSoundInjector.stop();
         }
-        /*
-        Entities.deleteEntity(HighFlam);
-        Entities.deleteEntity(LowFlam);
-        Entities.deleteEntity(SparcklesFlam);
-        Entities.deleteEntity(LightFire);        
         
-        //print("FIRE: script end, kill entities!");
-        */
+        Entities.deleteEntity(lowFlamId);
         
+        //Entities.deleteEntity(HighFlam);
+        //Entities.deleteEntity(SparcklesFlam);
+        //Entities.deleteEntity(LightFire);        
+
         Script.update.disconnect(myTimer);
     };             
 
@@ -120,6 +111,8 @@
             
             //processing
             print("PROCESSING!");
+            var state = GetCurrentCycleValue(100, FIRE_CYCLE);
+            
             
             //Check for resize
             var properties = Entities.getEntityProperties(thisEntityId, "dimensions");
@@ -247,16 +240,13 @@
             
             
         }        
+*/
 
+        function addLowFire(entityID) {
 
-        function AddLowFire(TityId) {
-            //print("FIRE: add permanent Low fire!");
+            var properties = Entities.getEntityProperties(entityID, ["position", "rotation", "renderWithZones"]);   
             
-            var properLowFlam = Entities.getEntityProperties(TityId); 
-            var LowFlamPosition = properLowFlam.position;
-            var LowFlamRotation = properLowFlam.rotation;
-            
-            LowFlam = Entities.addEntity({
+            lowFlamId = Entities.addEntity({
                 "accelerationSpread": {  
                     "x": 0,
                     "y": 0,
@@ -291,9 +281,9 @@
                     "red": 255
                 },
                 "dimensions": {
-                    "x": 2.5576000213623047,
-                    "y": 2.5576000213623047,
-                    "z": 2.5576000213623047
+                    "x": 2.5576000213623047 * fireScaleFactor,
+                    "y": 2.5576000213623047 * fireScaleFactor,
+                    "z": 2.5576000213623047 * fireScaleFactor
                 },
                 "emitAcceleration": {
                     "x": 0,
@@ -301,9 +291,9 @@
                     "z": 0
                 },
                 "emitDimensions": {
-                    "x": 1,
-                    "y": 1,
-                    "z": 1
+                    "x": fireScaleFactor,
+                    "y": fireScaleFactor,
+                    "z": fireScaleFactor
                 },
                 "emitOrientation": {
                     "w": 0.7071068,
@@ -318,42 +308,33 @@
                 "isEmitting": 1,            
                 "lifespan": 1.1,
                 "maxParticles": 100,
-                "name": "Low Flame Fire Particle - AK2018",
+                "name": "Low Flames Particles",
                 "particleRadius": 0.3,
                 "polarStart": 0,
                 "polarFinish": 0.1745,
                 "position":{
-                    "x": LowFlamPosition.x,
-                    "y": LowFlamPosition.y + 0.51,
-                    "z": LowFlamPosition.z
+                    "x": properties.position.x,
+                    "y": properties.position.y + (0.51 * fireScaleFactor),
+                    "z": properties.position.z
                 },
-                "parentID": TityId,
-                "lifetime": 2400.1,
-                "queryAACube": {
-                    "scale": 4.429893493652344,
-                    "x": -2.214946746826172,
-                    "y": -2.214946746826172,
-                    "z": -2.214946746826172
-                },
-                "radiusFinish": 0.2,
+                "parentID": entityID,
+                "renderWithZones": properties.renderWithZones,
+                "radiusFinish": 0.2 * fireScaleFactor,
                 "radiusSpread": 0,
-                "radiusStart": 0.1,
-                "rotation": {
-                    "w": LowFlamRotation.w,
-                    "x": LowFlamRotation.x,
-                    "y": LowFlamRotation.y,
-                    "z": LowFlamRotation.z
-                },
+                "radiusStart": 0.1  * fireScaleFactor,
+                "rotation": properties.rotation,
                 "speedSpread": 0,
-                "textures": "http://mpassets.highfidelity.com/bf263f5a-c152-45ae-953f-07c61438ed82-v1/PARTICLE_LOW_FIRE_FLAMME_2018.png",
+                "textures": PARTICLE_LOW_FLAME_URL,
                 "type": "ParticleEffect",
-                "userData": "{\"grabbableKey\":{\"grabbable\":false}}"
-            });
+                "grab": {
+                            "grabbable": false
+                }
+            }, "local");
             
             
         }        
 
-        
+/*        
         function AddSparckles(TityId) {
             //print("FIRE: add permanent Sparckle!");
             
@@ -513,5 +494,22 @@
             "volume": 1.0
         });
     }
+
+	/*
+	* Return the current position in a cycle 
+	* for specific time length
+	*
+    * @param   {number integer}  cyclelength       a cycle goes from 0 to cyclelength
+	* @param   {number integer}  cycleduration     duration of a cycle in seconds.
+    * @return  {number double}           		current position in the cycle (double)
+	*/
+    function GetCurrentCycleValue(cyclelength, cycleduration){
+		var today = new Date();
+		var TodaySec = today.getTime()/1000;
+		var CurrentSec = TodaySec%cycleduration;
+		
+		return (CurrentSec/cycleduration)*cyclelength;
+		
+	}
 
 })
