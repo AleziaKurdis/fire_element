@@ -320,7 +320,7 @@
                 "name": "Low Flames Particles",
                 "particleRadius": 0.3  * fireScaleFactor,
                 "polarStart": 0,
-                "polarFinish": 3.14159,
+                "polarFinish": Math.PI / 2,
                 "position":{
                     "x": properties.position.x,
                     "y": properties.position.y,
