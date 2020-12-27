@@ -300,14 +300,14 @@
                 },                
                 "emitDimensions": {
                     "x": 0.4 * fireScaleFactor,
-                    "y": 0.01 * fireScaleFactor,
-                    "z": 0.4 * fireScaleFactor
+                    "y": 0.4 * fireScaleFactor,
+                    "z": 0.01 * fireScaleFactor
                 },
                 "emitOrientation": {
-                    "w": 0,
-                    "x": 0,
+                    "w": 0.7071068,
+                    "x": 0.7071068,
                     "y": 0,
-                    "z": 1
+                    "z": 0
                 },
                 "emitRate": 20,
                 "emitterShouldTrail": 0,            
