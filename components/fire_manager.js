@@ -116,7 +116,7 @@
             
             //Check for resize
             var properties = Entities.getEntityProperties(thisEntityId, "dimensions");
-            if (properties.dimensions !== previousDimensions){
+            if ((properties.dimensions.x - previousDimensions.x) > 0.001){
                 //Resize
                 fireScaleFactor = properties.dimensions.x;
                 var newDimensions = {
@@ -260,8 +260,8 @@
                 "alphaFinish": 0,
                 "alphaSpread": 0,
                 "alphaStart": 0.5,
-                "azimuthStart": -3.14159,
-                "azimuthFinish": 0,
+                "azimuthStart": 0,
+                "azimuthFinish": 3.14159,
                 "collisionless": 1,
                 "color": {
                     "blue": 18,
