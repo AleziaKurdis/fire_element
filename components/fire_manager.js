@@ -128,28 +128,8 @@
                     "dimensions": newDimensions
                 });
                 
-                Entities.editEntity(lowFlamId, {
-                    "dimensions": {
-                        "x": 2.5576000213623047 * fireScaleFactor,
-                        "y": 2.5576000213623047 * fireScaleFactor,
-                        "z": 2.5576000213623047 * fireScaleFactor
-                    },
-                    "emitDimensions": {
-                        "x": fireScaleFactor,
-                        "y": fireScaleFactor,
-                        "z": fireScaleFactor
-                    },         
-                    "emitSpeed": 0.1  * fireScaleFactor,
-                    "particleRadius": 0.3 * fireScaleFactor,
-                    "position":{
-                        "x": properties.position.x,
-                        "y": properties.position.y + (0.51 * fireScaleFactor),
-                        "z": properties.position.z
-                    },
-                    "renderWithZones": properties.renderWithZones,
-                    "radiusFinish": 0.2 * fireScaleFactor,
-                    "radiusStart": 0.1  * fireScaleFactor
-                });                
+                Entities.deleteEntity(lowFlamId);
+                addLowFire(entityID);                
                 
                 previousDimensions = newDimensions;
                 //resize partlice and light range
@@ -327,6 +307,7 @@
                 "emitRate": 20,
                 "emitterShouldTrail": 0,            
                 "emitSpeed": 0.1  * fireScaleFactor,
+                "speedSpread": 0.04  * fireScaleFactor,
                 "ignoreForCollisions": 1,
                 "isEmitting": 1,            
                 "lifespan": 1.1,
