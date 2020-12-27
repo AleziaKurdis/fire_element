@@ -290,13 +290,18 @@
                 },
                 "emitAcceleration": {
                     "x": 0,
-                    "y": 0.5,
+                    "y": 0.2 * fireScaleFactor,
                     "z": 0
                 },
+                "accelerationSpread": {
+                    "x": 0,
+                    "y": 0.08 * fireScaleFactor,
+                    "z": 0
+                },                
                 "emitDimensions": {
-                    "x": 0.8 * fireScaleFactor,
-                    "y": 0.1 * fireScaleFactor,
-                    "z": 0.8 * fireScaleFactor
+                    "x": 0.6 * fireScaleFactor,
+                    "y": 0.01 * fireScaleFactor,
+                    "z": 0.6 * fireScaleFactor
                 },
                 "emitOrientation": {
                     "w": 0,
