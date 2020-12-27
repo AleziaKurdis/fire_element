@@ -261,7 +261,7 @@
                 "alphaSpread": 0,
                 "alphaStart": 0.5,
                 "azimuthStart": -3.14159,
-                "azimuthFinish": 3.14159,
+                "azimuthFinish": 0,
                 "collisionless": 1,
                 "color": {
                     "blue": 18,
@@ -320,7 +320,7 @@
                 "name": "Low Flames Particles",
                 "particleRadius": 0.3  * fireScaleFactor,
                 "polarStart": 0,
-                "polarFinish": Math.PI / 2,
+                "polarFinish": Math.PI,
                 "position":{
                     "x": properties.position.x,
                     "y": properties.position.y,
