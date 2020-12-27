@@ -352,7 +352,6 @@
                 "alphaStart": 1,
                 "azimuthStart": -3.14159,
                 "azimuthFinish": 3.14159,            
-                "clientOnly": 0,
                 "collisionless": 1,
                 "color": {
                     "blue": 0,
@@ -386,7 +385,7 @@
                 },
                 "emitDimensions": {
                     "x": 0.4 * fireScaleFactor,
-                    "y": 0.1 * fireScaleFactor,
+                    "y": 0.2 * fireScaleFactor,
                     "z": 0.4 * fireScaleFactor
                 },
                 "emitOrientation": {
@@ -404,8 +403,8 @@
                 "maxParticles": 20,
                 "name": "Sparks Particles",
                 "particleRadius": 0.2,
-                "polarStart": 0,
-                "polarFinish": 0.191,
+                "polarStart": Math.PI/2,
+                "polarFinish": Math.PI,
                 "position":{
                     "x": properties.position.x,
                     "y": properties.position.y,
