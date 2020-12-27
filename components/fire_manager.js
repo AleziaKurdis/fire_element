@@ -390,7 +390,7 @@
                     "z": 0.4 * fireScaleFactor
                 },
                 "emitOrientation": {
-                    "w": -0.7071068,
+                    "w": 0.7071068,
                     "x": -0.7071068,
                     "y": 0,
                     "z": 0
