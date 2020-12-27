@@ -294,15 +294,15 @@
                     "z": 0
                 },
                 "emitDimensions": {
-                    "x": fireScaleFactor,
-                    "y": 0.2 * fireScaleFactor,
-                    "z": fireScaleFactor
+                    "x": 0.8 * fireScaleFactor,
+                    "y": 0.1 * fireScaleFactor,
+                    "z": 0.8 * fireScaleFactor
                 },
                 "emitOrientation": {
-                    "w": 0.7071068,
-                    "x": 0.7071068,
+                    "w": 0,
+                    "x": 0,
                     "y": 0,
-                    "z": 0
+                    "z": 1
                 },
                 "emitRate": 20,
                 "emitterShouldTrail": 0,            
@@ -318,7 +318,7 @@
                 "polarFinish": 3.14159,
                 "position":{
                     "x": properties.position.x,
-                    "y": properties.position.y + (0.1 * fireScaleFactor),
+                    "y": properties.position.y - (0.1 * fireScaleFactor),
                     "z": properties.position.z
                 },
                 "parentID": entityID,
