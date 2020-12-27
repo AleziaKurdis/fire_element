@@ -10,7 +10,7 @@
             },
             "modelURL": "https://aleziakurdis.github.io/fire_element/components/FIRE.fbx",
             "name": "GENERIC FIRE ELEMENT",
-            "serverScripts": "https://aleziakurdis.github.io/fire_element/components/fire_manager.js",
+            "script": "https://aleziakurdis.github.io/fire_element/components/fire_manager.js",
             "shapeType": "static-mesh",
             "type": "Model",
             "grab": {
