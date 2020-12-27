@@ -285,7 +285,7 @@
                 },
                 "emitAcceleration": {
                     "x": 0,
-                    "y": 0.3 * fireScaleFactor,
+                    "y": 0.2 * fireScaleFactor,
                     "z": 0
                 },
                 "accelerationSpread": {
@@ -324,7 +324,7 @@
                 "parentID": entityID,
                 "renderWithZones": properties.renderWithZones,
                 "radiusFinish": 0.2 * fireScaleFactor,
-                "radiusSpread": 0,
+                "radiusSpread": 0.1 * fireScaleFactor,
                 "radiusStart": 0.1  * fireScaleFactor,
                 "rotation": properties.rotation,
                 "speedSpread": 0,
@@ -400,7 +400,7 @@
                 "speedSpread": 0.1 * fireScaleFactor,
                 "ignoreForCollisions": 1,
                 "isEmitting": 1,            
-                "lifespan": 1.5,
+                "lifespan": 1.6,
                 "maxParticles": 20,
                 "name": "Sparks Particles",
                 "particleRadius": 0.2,
