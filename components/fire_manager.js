@@ -323,7 +323,7 @@
                 "polarFinish": Math.PI,
                 "position":{
                     "x": properties.position.x,
-                    "y": properties.position.y - (0.1 * fireScaleFactor),
+                    "y": properties.position.y,
                     "z": properties.position.z
                 },
                 "parentID": entityID,
