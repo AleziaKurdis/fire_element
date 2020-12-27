@@ -43,7 +43,7 @@
         fireScaleFactor = properties.dimensions.x;
         previousDimensions = properties.dimensions;
 
-        addLowFire(entityID);
+        addLowFire(thisEntityId);
 
         //Add spackle particle
         //AddSparckles(entityID);
@@ -129,7 +129,7 @@
                 });
                 
                 Entities.deleteEntity(lowFlamId);
-                addLowFire(entityID);                
+                addLowFire(thisEntityId);                
                 
                 previousDimensions = newDimensions;
                 //resize partlice and light range
