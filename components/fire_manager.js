@@ -390,8 +390,8 @@
                     "z": 0.4 * fireScaleFactor
                 },
                 "emitOrientation": {
-                    "w": 0.7071068,
-                    "x": 0.7071068,
+                    "w": -0.7071068,
+                    "x": -0.7071068,
                     "y": 0,
                     "z": 0
                 },
@@ -408,7 +408,7 @@
                 "polarFinish": 0.191,
                 "position":{
                     "x": properties.position.x,
-                    "y": properties.position.y + (0.45 * fireScaleFactor),
+                    "y": properties.position.y,
                     "z": properties.position.z
                 },
                 "parentID": entityID,
