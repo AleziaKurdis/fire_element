@@ -380,7 +380,7 @@
                 },
                 "emitAcceleration": {
                     "x": 0,
-                    "y": 1.2 * fireScaleFactor,
+                    "y": 2 * fireScaleFactor,
                     "z": 0
                 },
                 "emitDimensions": {
@@ -400,7 +400,7 @@
                 "speedSpread": 0.1 * fireScaleFactor,
                 "ignoreForCollisions": 1,
                 "isEmitting": 1,            
-                "lifespan": 2,
+                "lifespan": 1.5,
                 "maxParticles": 20,
                 "name": "Sparks Particles",
                 "particleRadius": 0.2,
