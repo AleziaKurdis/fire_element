@@ -295,7 +295,7 @@
                 },
                 "emitDimensions": {
                     "x": fireScaleFactor,
-                    "y": fireScaleFactor,
+                    "y": 0.2 * fireScaleFactor,
                     "z": fireScaleFactor
                 },
                 "emitOrientation": {
@@ -315,10 +315,10 @@
                 "name": "Low Flames Particles",
                 "particleRadius": 0.3  * fireScaleFactor,
                 "polarStart": 0,
-                "polarFinish": 0.1745,
+                "polarFinish": 3.14159,
                 "position":{
                     "x": properties.position.x,
-                    "y": properties.position.y + (0.51 * fireScaleFactor),
+                    "y": properties.position.y + (0.1 * fireScaleFactor),
                     "z": properties.position.z
                 },
                 "parentID": entityID,
