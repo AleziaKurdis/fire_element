@@ -290,12 +290,12 @@
                 },
                 "emitAcceleration": {
                     "x": 0,
-                    "y": 0.1 * fireScaleFactor,
+                    "y": 0.9 * fireScaleFactor,
                     "z": 0
                 },
                 "accelerationSpread": {
                     "x": 0,
-                    "y": 0.06 * fireScaleFactor,
+                    "y": 0.03 * fireScaleFactor,
                     "z": 0
                 },                
                 "emitDimensions": {
@@ -309,21 +309,21 @@
                     "y": 0,
                     "z": 0
                 },
-                "emitRate": 20,
+                "emitRate": 30,
                 "emitterShouldTrail": 0,            
-                "emitSpeed": 0.1  * fireScaleFactor,
+                "emitSpeed": 0.08  * fireScaleFactor,
                 "speedSpread": 0.04  * fireScaleFactor,
                 "ignoreForCollisions": 1,
                 "isEmitting": 1,            
                 "lifespan": 1.1,
-                "maxParticles": 100,
+                "maxParticles": 60,
                 "name": "Low Flames Particles",
                 "particleRadius": 0.3  * fireScaleFactor,
                 "polarStart": 0,
                 "polarFinish": Math.PI,
                 "position":{
                     "x": properties.position.x,
-                    "y": properties.position.y,
+                    "y": properties.position.y - (0.1 * fireScaleFactor),
                     "z": properties.position.z
                 },
                 "parentID": entityID,
