@@ -290,18 +290,18 @@
                 },
                 "emitAcceleration": {
                     "x": 0,
-                    "y": 0.2 * fireScaleFactor,
+                    "y": 0.1 * fireScaleFactor,
                     "z": 0
                 },
                 "accelerationSpread": {
                     "x": 0,
-                    "y": 0.08 * fireScaleFactor,
+                    "y": 0.06 * fireScaleFactor,
                     "z": 0
                 },                
                 "emitDimensions": {
-                    "x": 0.6 * fireScaleFactor,
+                    "x": 0.4 * fireScaleFactor,
                     "y": 0.01 * fireScaleFactor,
-                    "z": 0.6 * fireScaleFactor
+                    "z": 0.4 * fireScaleFactor
                 },
                 "emitOrientation": {
                     "w": 0,
@@ -323,7 +323,7 @@
                 "polarFinish": 3.14159,
                 "position":{
                     "x": properties.position.x,
-                    "y": properties.position.y - (0.1 * fireScaleFactor),
+                    "y": properties.position.y,
                     "z": properties.position.z
                 },
                 "parentID": entityID,
