@@ -299,10 +299,10 @@
                     "z": 0.4 * fireScaleFactor
                 },
                 "emitOrientation": {
-                    "w": 0,
+                    "w": 1,
                     "x": 0,
                     "y": 0,
-                    "z": 1
+                    "z": 0
                 },
                 "emitRate": 30,
                 "emitterShouldTrail": 0,            
@@ -385,18 +385,19 @@
                 },
                 "emitDimensions": {
                     "x": 0.4 * fireScaleFactor,
-                    "y": 0.2 * fireScaleFactor,
+                    "y": 0.4 * fireScaleFactor,
                     "z": 0.4 * fireScaleFactor
                 },
                 "emitOrientation": {
-                    "w": 0.7071068,
-                    "x": -0.7071068,
+                    "w": 1,
+                    "x": 0,
                     "y": 0,
                     "z": 0
                 },
                 "emitRate": 3,
                 "emitterShouldTrail": 0,            
-                "emitSpeed": 0.6,
+                "emitSpeed": 0,
+                "speedSpread": 0.25 * fireScaleFactor,
                 "ignoreForCollisions": 1,
                 "isEmitting": 1,            
                 "lifespan": 2,
