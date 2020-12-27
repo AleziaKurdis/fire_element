@@ -394,7 +394,7 @@
                     "y": 0,
                     "z": 0
                 },
-                "emitRate": 3,
+                "emitRate": 3 * fireScaleFactor,
                 "emitterShouldTrail": 0,            
                 "emitSpeed": 0,
                 "speedSpread": 0.1 * fireScaleFactor,
