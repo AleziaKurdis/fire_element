@@ -380,12 +380,12 @@
                 },
                 "emitAcceleration": {
                     "x": 0,
-                    "y": 1 * fireScaleFactor,
+                    "y": 1.2 * fireScaleFactor,
                     "z": 0
                 },
                 "emitDimensions": {
                     "x": 0.4 * fireScaleFactor,
-                    "y": 0.4 * fireScaleFactor,
+                    "y": 0.2 * fireScaleFactor,
                     "z": 0.4 * fireScaleFactor
                 },
                 "emitOrientation": {
@@ -397,7 +397,7 @@
                 "emitRate": 3,
                 "emitterShouldTrail": 0,            
                 "emitSpeed": 0,
-                "speedSpread": 0.25 * fireScaleFactor,
+                "speedSpread": 0.1 * fireScaleFactor,
                 "ignoreForCollisions": 1,
                 "isEmitting": 1,            
                 "lifespan": 2,
