@@ -457,12 +457,11 @@
             "red": 255
         };
         if (state > 49){
-            Entities.editEntity(lightFireId, {
-                color = {
-                    "blue": 0,
-                    "green": 68,
-                    "red": 255
-                };
+            color = {
+                "blue": 0,
+                "green": 68,
+                "red": 255
+            };
         }
         var properties = Entities.getEntityProperties(entityID,["position", "rotation", "renderWithZones"]);   
         lightFireId = Entities.addEntity({
