@@ -9,18 +9,25 @@
 //  See the accompanying file LICENSE or http://www.apache.org/licenses/LICENSE-2.0.html
 
 (function(){
-	var processInterval;
-
+    var thisEntity;
+    var UPDATE_TIMER_INTERVAL = 80;
+    var processTimer = 0;
+    
 	this.preload = function(entityID) {
-
-		var newval = 1;
-		var processInterval = Script.setInterval(function() {
-			newval = (Math.random() * 0.5)  + 1;
-			Entities.editEntity(entityID, {"intensity": newval});
-		}, 80); 
+        thisEntity = entityID;
+        Script.update.connect(myTimer);
 	}
 
+    function myTimer(deltaTime) {
+        var today = new Date();
+        if ((today.getTime() - processTimer) > UPDATE_TIMER_INTERVAL ) {
+            var newval = (Math.random() * 0.5)  + 1;
+            Entities.editEntity(thisEntity, {"intensity": newval});
+            processTimer = today.getTime();            
+        }
+    }
+    
     this.unload = function(entityID) {
-		Script.clearInterval(processInterval);
+		Script.update.disconnect(myTimer);
     };
 })
