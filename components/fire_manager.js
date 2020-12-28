@@ -40,7 +40,7 @@
         thisEntityId = entityID;
         fireSound = SoundCache.getSound(FIRE_SOUND_URL);
         
-        var properties = Entities.getEntityProperties(thisEntityId, "dimensions");
+        var properties = Entities.getEntityProperties(thisEntityId, ["dimensions"]);
         fireScaleFactor = properties.dimensions.x;
         previousDimensions = properties.dimensions;
 
@@ -115,7 +115,7 @@
             }
             
             //Check for resize
-            var properties = Entities.getEntityProperties(thisEntityId, "dimensions");
+            var properties = Entities.getEntityProperties(thisEntityId, ["dimensions"]);
             if ((properties.dimensions.x - previousDimensions.x) > 0.001){
                 //Resize
                 fireScaleFactor = properties.dimensions.x;
@@ -477,7 +477,7 @@
         if (state > 49){
             volume = 0.4;
         }
-        var prop = Entities.getEntityProperties(thisEntityId, "position"); 
+        var prop = Entities.getEntityProperties(thisEntityId, ["position"]); 
         var entposition = prop.position;
         fireSoundInjector = Audio.playSound(fireSound, {
             "position": entposition,
