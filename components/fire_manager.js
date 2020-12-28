@@ -14,7 +14,8 @@
     var PARTICLE_FLAME_URL = ROOT + "PARTICLE_FIRE_FLAME.png";
     var PARTICLE_LOW_FLAME_URL = ROOT + "PARTICLE_FIRE_LOW_FLAME.png";
     var PARTICLE_SPARK_URL = ROOT + "PARTICLE_FIRE_SPARK.png";
-
+    var LIGHT_FLICKER_SCRIPT_URL = ROOT + "flicker.js";
+    
     var UPDATE_TIMER_INTERVAL = 20000; // 20 sec
     var processTimer = 0;
 
@@ -45,14 +46,11 @@
 
         addLowFire(thisEntityId);
         addSparks(thisEntityId); 
-        
+        addLight(thisEntityId);
         //Add first High Fire
         //AddHighFire(entityID);
         //print("FIRE: add 1st High Fire!");    
 
-        //Add Light
-        //GenLight(entityID);
-        //print("FIRE: add Light!");
         
         //install timer High Fire
         
@@ -90,9 +88,8 @@
         
         Entities.deleteEntity(lowFlamId);
         Entities.deleteEntity(sparksFlamId);
+        Entities.deleteEntity(lightFireId); 
         //Entities.deleteEntity(HighFlam);
-        //
-        //Entities.deleteEntity(LightFire);        
 
         Script.update.disconnect(myTimer);
     };             
@@ -109,7 +106,30 @@
             //processing
             print("PROCESSING!");
             var state = GetCurrentCycleValue(100, FIRE_CYCLE);
-            
+            if (state > 49){
+                Entities.editEntity(lightFireId, {
+                    "color": {
+                        "blue": 0,
+                        "green": 68,
+                        "red": 255
+                    }
+                });
+                
+                if (fireSoundInjector !== undefined){
+                    fireSoundInjector.setOptions({"volume": 0.5});
+                }
+            } else {
+                Entities.editEntity(lightFireId, {
+                    "color": {
+                        "blue": 0,
+                        "green": 140,
+                        "red": 255
+                    }
+                });
+                if (fireSoundInjector !== undefined){
+                    fireSoundInjector.setOptions({"volume": 1.0});
+                }                
+            }
             
             //Check for resize
             var properties = Entities.getEntityProperties(thisEntityId, "dimensions");
@@ -130,6 +150,9 @@
                 
                 Entities.deleteEntity(sparksFlamId);
                 addSparks(thisEntityId);
+                
+                Entities.deleteEntity(lightFireId);
+                addLight(thisEntityId);
                 
                 previousDimensions = newDimensions;
                 //resize partlice and light range
@@ -426,27 +449,32 @@
             }, "local");
         }        
 
-/*
-    function GenLight(TityId){
-        
-        var properLight = Entities.getEntityProperties(TityId); 
-        var LightPosition = properLight.position;
-
-            
-        LightFire = Entities.addEntity({
-            "color": {
-                "blue": 0,
-                "green": 111,
-                "red": 255
-            },
+    function addLight(entityID){
+        var state = GetCurrentCycleValue(100, FIRE_CYCLE);
+        var color = {
+            "blue": 0,
+            "green": 140,
+            "red": 255
+        };
+        if (state > 49){
+            Entities.editEntity(lightFireId, {
+                color = {
+                    "blue": 0,
+                    "green": 68,
+                    "red": 255
+                };
+        }
+        var properties = Entities.getEntityProperties(entityID,["position", "rotation", "renderWithZones"]);   
+        lightFireId = Entities.addEntity({
+            "color": color,
             "cutoff": 90,
             "dimensions": {
-                "x": 4,
-                "y": 4,
-                "z": 4
+                "x": 4 * fireScaleFactor,
+                "y": 4 * fireScaleFactor,
+                "z": 4 * fireScaleFactor
             },
             "exponent": 0.20,
-            "falloffRadius": 3,
+            "falloffRadius": 1,
             "isSpotlight": true,
             "intensity": 1.0,
             "name": "FIRE-LIGHT",
@@ -457,28 +485,33 @@
                 "z": 0
             },
             "position": {
-                "x": LightPosition.x,
-                "y": LightPosition.y - 0.11,        
-                "z": LightPosition.z                
+                "x": properties.position.x,
+                "y": properties.position.y - (0.11 * fireScaleFactor),        
+                "z": properties.position.z                
             },
-            "parentID": TityId,
-            "lifetime": 2400.1,            
-            "serverScripts": "http://mpassets.highfidelity.com/bf263f5a-c152-45ae-953f-07c61438ed82-v1/flicker.js",
+            "renderWithZones": properties.renderWithZones,            
+            "parentID": entityID,          
+            "script": LIGHT_FLICKER_SCRIPT_URL,
             "type": "Light",
-            "userData": "{\"grabbableKey\":{\"grabbable\":false}}"
-        });
-        
-    }
-*/        
+            "grab": {
+                "grabbable": false
+            }
+        }, "local");      
+    }       
        
     function playFireSound(){
+        var state = GetCurrentCycleValue(100, FIRE_CYCLE);
+        var volume = 1.0;
+        if (state > 49){
+            volume = 0.5;
+        }
         var prop = Entities.getEntityProperties(thisEntityId, "position"); 
         var entposition = prop.position;
         fireSoundInjector = Audio.playSound(fireSound, {
             "position": entposition,
             "loop": true,
             "localOnly": true,
-            "volume": 1.0
+            "volume": volume
         });
     }
 
