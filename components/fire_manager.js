@@ -112,7 +112,8 @@
                         "blue": 0,
                         "green": 68,
                         "red": 255
-                    }
+                    },
+                    "falloffRadius": 1.6
                 });
                 
                 if (fireSoundInjector !== undefined){
@@ -124,7 +125,8 @@
                         "blue": 0,
                         "green": 140,
                         "red": 255
-                    }
+                    },
+                    "falloffRadius": 3.0
                 });
                 if (fireSoundInjector !== undefined){
                     fireSoundInjector.setOptions({"volume": 1.0});
@@ -451,6 +453,7 @@
 
     function addLight(entityID){
         var state = GetCurrentCycleValue(100, FIRE_CYCLE);
+        var falloffRadius = 3;
         var color = {
             "blue": 0,
             "green": 140,
@@ -462,18 +465,19 @@
                 "green": 68,
                 "red": 255
             };
+            falloffRadius = 1.6;
         }
         var properties = Entities.getEntityProperties(entityID,["position", "rotation", "renderWithZones"]);   
         lightFireId = Entities.addEntity({
             "color": color,
             "cutoff": 90,
             "dimensions": {
-                "x": 4 * fireScaleFactor,
-                "y": 4 * fireScaleFactor,
-                "z": 4 * fireScaleFactor
+                "x": 6 * fireScaleFactor,
+                "y": 6 * fireScaleFactor,
+                "z": 6 * fireScaleFactor
             },
             "exponent": 0.20,
-            "falloffRadius": 1,
+            "falloffRadius": falloffRadius,
             "isSpotlight": true,
             "intensity": 1.0,
             "name": "FIRE-LIGHT",
