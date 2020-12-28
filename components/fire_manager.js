@@ -95,13 +95,13 @@
                     "isEmitting": false
                 });                
                 if (fireSoundInjector !== undefined){
-                    fireSoundInjector.setOptions({"volume": 0.5});
+                    fireSoundInjector.setOptions({"volume": 0.4});
                 }
             } else {
                 Entities.editEntity(lightFireId, {
                     "color": {
                         "blue": 0,
-                        "green": 140,
+                        "green": 128,
                         "red": 255
                     },
                     "falloffRadius": 3.0
@@ -110,7 +110,7 @@
                     "isEmitting": true
                 });                
                 if (fireSoundInjector !== undefined){
-                    fireSoundInjector.setOptions({"volume": 1.0});
+                    fireSoundInjector.setOptions({"volume": 0.8});
                 }                
             }
             
@@ -425,7 +425,7 @@
         var falloffRadius = 3;
         var color = {
             "blue": 0,
-            "green": 140,
+            "green": 128,
             "red": 255
         };
         if (state > 49){
@@ -473,9 +473,9 @@
        
     function playFireSound(){
         var state = GetCurrentCycleValue(100, FIRE_CYCLE);
-        var volume = 1.0;
+        var volume = 0.8;
         if (state > 49){
-            volume = 0.5;
+            volume = 0.4;
         }
         var prop = Entities.getEntityProperties(thisEntityId, "position"); 
         var entposition = prop.position;
