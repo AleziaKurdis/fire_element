@@ -150,7 +150,7 @@
         }  
     }
         
-    function addLight(entityID) {
+    function addHighFire(entityID) {
         var state = GetCurrentCycleValue(100, FIRE_CYCLE);
         var isEmitting = true;
         if (state > 49){
