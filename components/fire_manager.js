@@ -80,9 +80,7 @@
     function myTimer(deltaTime) {
         var today = new Date();
         if ((today.getTime() - processTimer) > UPDATE_TIMER_INTERVAL ) {
-            
-            //processing
-            print("PROCESSING!");
+
             var state = GetCurrentCycleValue(100, FIRE_CYCLE);
             if (state > 49){
                 Entities.editEntity(lightFireId, {
@@ -186,7 +184,7 @@
                 "red": 0
             },
             "colorStart": {
-                "blue": 38,
+                "blue": 66,
                 "green": 208,
                 "red": 255
             },
@@ -213,7 +211,7 @@
             },
             "emitRate": 30,
             "emitterShouldTrail": 0,            
-            "emitSpeed": 0.59,
+            "emitSpeed": 0.59 * fireScaleFactor,
             "ignoreForCollisions": 1,
             "isEmitting": isEmitting,            
             "lifespan": 1.0,
@@ -224,7 +222,7 @@
             "polarFinish": 0.20944,
             "position":{
                 "x": properties.position.x,
-                "y": properties.position.y + (0.6  * fireScaleFactor),
+                "y": properties.position.y + (0.5  * fireScaleFactor),
                 "z": properties.position.z
             },
             "parentID": entityID,
@@ -233,7 +231,7 @@
             "radiusSpread": 0,
             "radiusStart": 0,
             "rotation": properties.rotation,
-            "speedSpread": 0,
+            "speedSpread": 0.08 * fireScaleFactor,
             "textures": PARTICLE_FLAME_URL,
             "type": "ParticleEffect",
             "grab": {
@@ -316,7 +314,7 @@
             "polarFinish": Math.PI,
             "position":{
                 "x": properties.position.x,
-                "y": properties.position.y,
+                "y": properties.position.y - (0.05  * fireScaleFactor),
                 "z": properties.position.z
             },
             "parentID": entityID,
