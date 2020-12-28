@@ -191,19 +191,19 @@
                 "red": 255
             },
             "dimensions": {
-                "x": 2.5576000213623047,
-                "y": 2.5576000213623047,
-                "z": 2.5576000213623047
+                "x": 2.5576000213623047 * fireScaleFactor,
+                "y": 2.5576000213623047 * fireScaleFactor,
+                "z": 2.5576000213623047 * fireScaleFactor
             },
             "emitAcceleration": {
                 "x": 0,
-                "y": 3,
+                "y": 3 * fireScaleFactor,
                 "z": 0
             },
             "emitDimensions": {
-                "x": 1,
-                "y": 1,
-                "z": 1
+                "x": fireScaleFactor,
+                "y": fireScaleFactor,
+                "z": fireScaleFactor
             },
             "emitOrientation": {
                 "w": 0.7071068,
