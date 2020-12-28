@@ -222,7 +222,7 @@
             "polarFinish": 0.20944,
             "position":{
                 "x": properties.position.x,
-                "y": properties.position.y + (0.5  * fireScaleFactor),
+                "y": properties.position.y + (0.53 * fireScaleFactor),
                 "z": properties.position.z
             },
             "parentID": entityID,
