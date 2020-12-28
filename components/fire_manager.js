@@ -482,7 +482,7 @@
         fireSoundInjector = Audio.playSound(fireSound, {
             "position": entposition,
             "loop": true,
-            "localOnly": true,
+            //"localOnly": true,
             "volume": volume
         });
     }
