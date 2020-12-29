@@ -19,8 +19,12 @@
     var UPDATE_TIMER_INTERVAL = 20000; // 20 sec
     var processTimer = 0;
 
+    var SOUND_UPDATE_TIMER_INTERVAL = 500; 
+    var soundProcessTimer = 0;
+
     var fireSound;
     var fireSoundInjector;
+    var volume;
 
     var thisEntityId;
     var fireScaleFactor = 1;
@@ -79,6 +83,18 @@
         
     function myTimer(deltaTime) {
         var today = new Date();
+        
+        if ((today.getTime() - soundProcessTimer) > SOUND_UPDATE_TIMER_INTERVAL ) {
+            if (fireSoundInjector !== undefined){
+                var prop = Entities.getEntityProperties(thisEntityId, ["position"]);             
+                fireSoundInjector.setOptions({
+                    "position": prop.position,
+                    "volume": volume
+                });
+            }            
+            soundProcessTimer = today.getTime();
+        }
+        
         if ((today.getTime() - processTimer) > UPDATE_TIMER_INTERVAL ) {
 
             var state = GetCurrentCycleValue(100, FIRE_CYCLE);
@@ -93,10 +109,9 @@
                 });
                 Entities.editEntity(highFlamId, {
                     "isEmitting": false
-                });                
-                if (fireSoundInjector !== undefined){
-                    fireSoundInjector.setOptions({"volume": 0.4});
-                }
+                });
+                
+                volume = 0.4};
             } else {
                 Entities.editEntity(lightFireId, {
                     "color": {
@@ -109,9 +124,7 @@
                 Entities.editEntity(highFlamId, {
                     "isEmitting": true
                 });                
-                if (fireSoundInjector !== undefined){
-                    fireSoundInjector.setOptions({"volume": 0.8});
-                }                
+                volume = 0.8;                
             }
             
             //Check for resize
@@ -473,16 +486,14 @@
        
     function playFireSound(){
         var state = GetCurrentCycleValue(100, FIRE_CYCLE);
-        var volume = 0.8;
+        volume = 0.8;
         if (state > 49){
             volume = 0.4;
         }
         var prop = Entities.getEntityProperties(thisEntityId, ["position"]); 
-        var entposition = prop.position;
         fireSoundInjector = Audio.playSound(fireSound, {
-            "position": entposition,
+            "position": prop.position,
             "loop": true,
-            //"localOnly": true,
             "volume": volume
         });
     }
