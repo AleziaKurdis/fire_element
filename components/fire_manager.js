@@ -111,7 +111,7 @@
                     "isEmitting": false
                 });
                 
-                volume = 0.4};
+                volume = 0.4;
             } else {
                 Entities.editEntity(lightFireId, {
                     "color": {
