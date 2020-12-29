@@ -25,6 +25,8 @@
     var fireSound;
     var fireSoundInjector;
     var volume;
+    var masterVolume = 0.6;
+    var currentKnownUserData;
 
     var thisEntityId;
     var fireScaleFactor = 1;
@@ -44,7 +46,18 @@
         thisEntityId = entityID;
         fireSound = SoundCache.getSound(FIRE_SOUND_URL);
         
-        var properties = Entities.getEntityProperties(thisEntityId, ["dimensions"]);
+        var properties = Entities.getEntityProperties(thisEntityId, ["dimensions", "userData"]);
+        currentKnownUserData = properties.userData;
+        var setupData = JSON.parse(currentKnownUserData);
+        if (setupData.volume === undefined) {
+            masterVolume = 0.6;
+        } else {
+            masterVolume = setupData.volume;
+            if (masterVolume < 0 || masterVolume > 1) {
+                masterVolume = 0.6;
+            }
+        }
+        
         fireScaleFactor = properties.dimensions.x;
         previousDimensions = properties.dimensions;
 
@@ -89,7 +102,7 @@
                 var prop = Entities.getEntityProperties(thisEntityId, ["position"]);             
                 fireSoundInjector.setOptions({
                     "position": prop.position,
-                    "volume": volume
+                    "volume": volume * masterVolume
                 });
             }            
             soundProcessTimer = today.getTime();
@@ -128,7 +141,7 @@
             }
             
             //Check for resize
-            var properties = Entities.getEntityProperties(thisEntityId, ["dimensions"]);
+            var properties = Entities.getEntityProperties(thisEntityId, ["dimensions", "userData"]);
             if ((properties.dimensions.x - previousDimensions.x) > 0.001){
                 //Resize
                 fireScaleFactor = properties.dimensions.x;
@@ -154,6 +167,20 @@
                 addHighFire(thisEntityId);
 
                 previousDimensions = newDimensions;
+            }
+
+            if (properties.userData !== currentKnownUserData) {
+                
+                currentKnownUserData = properties.userData;
+                var setupData = JSON.parse(currentKnownUserData);
+                if (setupData.volume === undefined) {
+                    masterVolume = 0.6;
+                } else {
+                    masterVolume = setupData.volume;
+                    if (masterVolume < 0 || masterVolume > 1) {
+                        masterVolume = 0.6;
+                    }
+                }                
             }
 
             today = new Date();
@@ -494,7 +521,7 @@
         fireSoundInjector = Audio.playSound(fireSound, {
             "position": prop.position,
             "loop": true,
-            "volume": volume
+            "volume": volume * masterVolume
         });
     }
 
