@@ -15,7 +15,8 @@
             "type": "Model",
             "grab": {
                 "grabbable": false
-            }
+            },
+            "userData": "{\"volume\": 0.6}"
         }
     ],
     "Id": "{de0523e2-f36f-4fca-bf35-c78bc44e35d9}",
